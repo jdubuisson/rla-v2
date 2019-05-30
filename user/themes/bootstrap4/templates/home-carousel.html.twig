@@ -24,7 +24,7 @@
     <div id="carouselIndicators" class="carousel slide w-100 fill-height carousel-fade" data-ride="carousel">
         <ol class="carousel-indicators">
             {% for module in page.collection() %}
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" {% if module.header.isActive %}class="active"{% endif %}></li>
+                <li data-target="#carouselIndicators" data-slide-to="{{ loop.index0 }}" {% if module.header.isActive %}class="active"{% endif %}></li>
             {% endfor %}
         </ol>
         <div class="carousel-inner fill-height">
