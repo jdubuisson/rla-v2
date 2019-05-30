@@ -40,14 +40,14 @@
     {% include 'partials/langswitcher.html.twig' %}
 {% endif %}
 
-<div class="main-wrapper container-fluid">
-    <div class="row h-100">
-        <div class="section col-sm-2 fill-height">
+<div class="main-wrapper container-fluid px-0">
+    <div class="row h-100 no-gutters">
+        <div class="section col-sm-2 col-lg-1 fill-height">
             {% block header_navigation %}
                 {% include 'partials/navigation.html.twig' %}
             {% endblock %}
         </div>
-        <div class="section col-sm-10 fill-height">
+        <div class="section col-sm-10 col-lg-11 fill-height">
             {% block content %}{% endblock %}
             {% block pagination %}{% endblock %}
         </div>
