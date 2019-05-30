@@ -6,10 +6,10 @@ buttons:
         text: 'Read the Documentation'
         url: 'http://learn.getgrav.org'
         primary: true
-isActive: true
 ---
 
-# Welcome to Grav
-## Crazy **Fast**, Ridiculously **Easy**, Amazingly **Powerful**...
+# slide 2
+## popopo
+
 
 

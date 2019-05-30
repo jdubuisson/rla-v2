@@ -8,6 +8,14 @@
     flex: 1;
 }
 
+.carousel-item.fill-height {
+    display: none;
+}
+
+.carousel-item.fill-height.active {
+    display: flex;
+}
+
 body {
     margin-bottom: 0;
 }
@@ -24,4 +32,50 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.carousel-item {
+    height: 100vh;
+    min-height: 300px;
+    background-image: no-repeat center center scroll;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+.carousel.fade {
+    opacity: 1;
+}
+
+.carousel.fade .carousel-item {
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
+    left: 0 !important;
+    opacity: 0;
+    top: 0;
+    position: absolute;
+    width: 100%;
+    display: block !important;
+    z-index: 1;
+}
+
+.carousel.fade .carousel-item:first-child {
+    top: auto;
+    position: relative;
+}
+
+.carousel.fade .carousel-item.active {
+    opacity: 1;
+    -moz-transition: opacity ease-in-out .7s;
+    -o-transition: opacity ease-in-out .7s;
+    -webkit-transition: opacity ease-in-out .7s;
+    transition: opacity ease-in-out .7s;
+    z-index: 2;
+}
+
+.carousel-control-next,
+.carousel-control-prev {
+    z-index: 10;
 }
