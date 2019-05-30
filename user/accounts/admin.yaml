@@ -1,0 +1,11 @@
+state: enabled
+email: julien.dubuisson@gmail.com
+fullname: Admin
+title: Administrator
+access:
+  admin:
+    login: true
+    super: true
+  site:
+    login: true
+hashed_password: $2y$10$QgiVjvKjKGj5IHv8K0tDsetz8w6MNuEUsWxQa2edeVUkZEEdLIObq

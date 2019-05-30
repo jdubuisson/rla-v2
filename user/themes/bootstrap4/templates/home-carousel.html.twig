@@ -1,0 +1,27 @@
+{% extends 'partials/base.html.twig' %}
+{% import _self as macro %}
+
+{% set show_onpage_menu = header.onpage_menu == true or header.onpage_menu is null %}
+{% macro pageLinkName(text) %}{{ text|lower|replace({' ':'_'}) }}{% endmacro %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block bottom %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_classes %}{{ parent() }} {% endblock %}
+
+{% block header_navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    {{ page.content|raw }}
+
+    {% for module in page.collection() %}
+        {{ module.content|raw }}
+    {% endfor %}
+{% endblock %}
