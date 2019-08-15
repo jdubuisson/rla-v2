@@ -77,3 +77,29 @@ body {
 .carousel-control-prev {
     z-index: 10;
 }
+
+.row.reverse {
+    flex-direction: row-reverse;
+}
+
+.note {
+    position: absolute;
+    z-index: 99;
+    color: #fff;
+    font-size: 14px;
+    bottom: 10%;
+    left: 10%;
+    background: rgba(0,0,0,0.3);
+    padding: 20px;
+}
+
+.note:hover {
+    text-decoration: none;
+    color: #fff;
+    background: rgba(0,0,0,0.5);
+}
+
+.row.reverse .note{
+    right: 5%;
+    left: auto;
+}

@@ -1,0 +1,21 @@
+title: Persopro
+'@extends':
+    type: default
+    context: blueprints://pages
+
+form:
+    fields:
+        tabs:
+            fields:
+                content:
+                    fields:
+                        header.textBlocks:
+                            type: list
+                            label: Add a block of text
+                            btnLabel: Add block
+                            controls: both
+                            fields:
+                                .block:
+                                    type: editor
+                                    label: Text block
+

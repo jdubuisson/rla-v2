@@ -8,4 +8,11 @@ jQuery(document).ready(function($){
         window.scroll({ top: start_y - header_offset, left: 0, behavior: 'smooth' });
         return false;
     });
+
+    new fullpage('#fullpage', {
+        //options here
+        autoScrolling:true,
+        responsiveWidth: 992
+    });
+
 });
