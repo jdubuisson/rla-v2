@@ -1,4 +1,5 @@
 <?php
+
 namespace Grav\Plugin;
 
 use Composer\Autoload\ClassLoader;
@@ -19,6 +20,7 @@ use Grav\Framework\Route\Route;
 use Grav\Plugin\Form\Form;
 use Grav\Plugin\Form\Forms;
 use ReCaptcha\ReCaptcha;
+use ReCaptcha\RequestMethod\CurlPost;
 use RocketTheme\Toolbox\File\JsonFile;
 use RocketTheme\Toolbox\File\YamlFile;
 use RocketTheme\Toolbox\File\File;
@@ -95,7 +97,7 @@ class FormPlugin extends Plugin
     public function onPluginsInitialized()
     {
         // Backwards compatibility for plugins that use forms.
-        class_alias(Form::class, \Grav\Plugin\Form::class);
+        class_alias(Form::class, 'Grav\Plugin\Form');
 
         $this->grav['forms'] = function () {
             $forms = new Forms();
@@ -156,7 +158,7 @@ class FormPlugin extends Plugin
 
         // Force never_cache_twig if modular form (recursively up)
         $current = $page;
-        while ($current && $current->modular()) {
+        while ($current && $current->modularTwig()) {
             $header = $current->header();
             $header->never_cache_twig = true;
 
@@ -218,9 +220,9 @@ class FormPlugin extends Plugin
         // Enable form events if there's a POST
         if ($this->shouldProcessForm()) {
             $this->enable([
-                'onFormProcessed'       => ['onFormProcessed', 0],
+                'onFormProcessed' => ['onFormProcessed', 0],
                 'onFormValidationError' => ['onFormValidationError', 0],
-                'onFormFieldTypes'      => ['onFormFieldTypes', 0],
+                'onFormFieldTypes' => ['onFormFieldTypes', 0],
             ]);
 
             /** @var Uri $uri */
@@ -233,8 +235,9 @@ class FormPlugin extends Plugin
             if ($form instanceof Form) {
                 // Post the form
                 $isJson = $uri->extension() === 'json';
+                $task = $uri->post('task') ?? $uri->param('task');
+
                 if ($isJson) {
-                    $task = $uri->post('task') ?? $uri->param('task');
                     if ($task === 'store-state') {
                         $this->json_response = $form->storeState();
                     } elseif ($task === 'clear-state') {
@@ -244,8 +247,9 @@ class FormPlugin extends Plugin
                     } elseif ($task === 'file-upload' || $uri->post('__form-file-uploader__')) {
                         $this->json_response = $form->uploadFiles();
                     }
-                } else {
-                    $task = $uri->post('task');
+                }
+
+                if (empty($this->json_response)) {
                     if ($task === 'clear-state') {
                         $form->getFlash()->delete();
                         $redirect = $form->getBlueprint()->get('form/clear_redirect_url') ?? $page->route();
@@ -329,9 +333,9 @@ class FormPlugin extends Plugin
             new \Twig_SimpleFunction('forms', [$this, 'getForm'])
         );
 
-        $this->grav['twig']->twig()->getExtension('Twig_Extension_Core')->setEscaper('yaml', function($twig, $string, $charset) {
+        $this->grav['twig']->twig()->getExtension('Twig_Extension_Core')->setEscaper('yaml', function ($twig, $string, $charset) {
             return Yaml::dump($string);
-            }
+        }
         );
 
     }
@@ -399,6 +403,9 @@ class FormPlugin extends Plugin
                 $ip = Uri::ip();
 
                 $recaptcha = new ReCaptcha($secret);
+                if (extension_loaded('curl')) {
+                    $recaptcha = new ReCaptcha($secret, new CurlPost());
+                }
 
                 // get captcha version
                 $captcha_version = $captcha_config['version'] ?? 2;
@@ -427,13 +434,13 @@ class FormPlugin extends Plugin
                         $type = $field['type'] ?? 'text';
                         $field_message = $field['recaptcha_not_validated'] ?? null;
                         if ($type === 'captcha' && $field_message) {
-                            $message =  $field_message;
+                            $message = $field_message;
                             break;
                         }
                     }
 
                     $this->grav->fireEvent('onFormValidationError', new Event([
-                        'form'    => $form,
+                        'form' => $form,
                         'message' => $message
                     ]));
 
@@ -448,16 +455,16 @@ class FormPlugin extends Plugin
                 $label = $params['label'] ?? 'Timestamp';
                 $format = $params['format'] ?? 'Y-m-d H:i:s';
                 $blueprint = $form->value()->blueprints();
-                $blueprint->set('form/fields/timestamp', ['name'=>'timestamp', 'label'=> $label, 'type'=>'hidden']);
+                $blueprint->set('form/fields/timestamp', ['name' => 'timestamp', 'label' => $label, 'type' => 'hidden']);
                 $now = new \DateTime('now');
                 $date_string = $now->format($format);
                 $form->setFields($blueprint->fields());
-                $form->setData('timestamp',$date_string);
+                $form->setData('timestamp', $date_string);
                 break;
             case 'ip':
                 $label = $params['label'] ?? 'User IP';
                 $blueprint = $form->value()->blueprints();
-                $blueprint->set('form/fields/ip', ['name'=>'ip', 'label'=> $label, 'type'=>'hidden']);
+                $blueprint->set('form/fields/ip', ['name' => 'ip', 'label' => $label, 'type' => 'hidden']);
                 $form->setFields($blueprint->fields());
                 $form->setData('ip', Uri::ip());
                 break;
@@ -503,7 +510,7 @@ class FormPlugin extends Plugin
                 if (!$route || $route[0] !== '/') {
                     /** @var Uri $uri */
                     $uri = $this->grav['uri'];
-                    $route = rtrim($uri->route(), '/'). '/' . ($route ?: '');
+                    $route = rtrim($uri->route(), '/') . '/' . ($route ?: '');
                 }
 
                 /** @var Twig $twig */
@@ -523,8 +530,8 @@ class FormPlugin extends Plugin
                 break;
             case 'remember':
                 foreach ($params as $remember_field) {
-                    $field_cookie = 'forms-'.$form['name'].'-'.$remember_field;
-                    setcookie($field_cookie, $form->value($remember_field), time()+60*60*24*60);
+                    $field_cookie = 'forms-' . $form['name'] . '-' . $remember_field;
+                    setcookie($field_cookie, $form->value($remember_field), time() + 60 * 60 * 24 * 60);
                 }
                 break;
             case 'upload':
@@ -547,7 +554,7 @@ class FormPlugin extends Plugin
                         throw new \RuntimeException('Form save: \'operation: add\' is only supported with a static filename');
                     }
 
-                    $filename = $prefix . $this->udate($format, $raw_format) . $postfix. $ext;
+                    $filename = $prefix . $this->udate($format, $raw_format) . $postfix . $ext;
                 }
 
                 /** @var Twig $twig */
@@ -562,7 +569,7 @@ class FormPlugin extends Plugin
                 $locator = $this->grav['locator'];
                 $path = $locator->findResource('user-data://', true);
                 $dir = $path . DS . $folder;
-                $fullFileName = $dir. DS . $filename;
+                $fullFileName = $dir . DS . $filename;
 
                 if (!empty($params['raw']) || !empty($params['template'])) {
                     // Save data as it comes from the form.
@@ -673,7 +680,7 @@ class FormPlugin extends Plugin
     /**
      * Handle form validation error
      *
-     * @param  Event $event An event object
+     * @param Event $event An event object
      * @throws \Exception
      */
     public function onFormValidationError(Event $event)
@@ -708,10 +715,14 @@ class FormPlugin extends Plugin
      * Add a form to the forms plugin
      *
      * @param string|null $page_route
-     * @param FormInterface $form
+     * @param FormInterface|null $form
      */
-    public function addForm(?string $page_route, FormInterface $form)
+    public function addForm(?string $page_route, ?FormInterface $form)
     {
+        if (null === $form) {
+            return;
+        }
+
         $name = $form->getName();
 
         if (!isset($this->forms[$page_route][$name])) {
@@ -813,7 +824,7 @@ class FormPlugin extends Plugin
             'key' => [
                 'input@' => false
             ],
-            'section'  => [
+            'section' => [
                 'input@' => false
             ],
             'spacer' => [
@@ -915,7 +926,7 @@ class FormPlugin extends Plugin
             }
 
             if (isset($form->refresh_prevention)) {
-                $refresh_prevention = (bool) $form->refresh_prevention;
+                $refresh_prevention = (bool)$form->refresh_prevention;
             } else {
                 $refresh_prevention = $this->config->get('plugins.form.refresh_prevention', false);
             }
@@ -1072,7 +1083,7 @@ class FormPlugin extends Plugin
      * Create unix timestamp for storing the data into the filesystem.
      *
      * @param string $format
-     * @param bool   $raw
+     * @param bool $raw
      *
      * @return string
      */
