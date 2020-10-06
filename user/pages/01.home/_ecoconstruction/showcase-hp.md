@@ -1,11 +1,6 @@
 ---
 title: 'Homepage Showcase'
 menu: Top
-buttons:
-    -
-        text: 'Read the Documentation'
-        url: 'http://learn.getgrav.org'
-        primary: true
 isActive: true
 media_order: ecoconstruction-bois.jpg
 ---

@@ -7,7 +7,7 @@
 <div class="carousel-item {% if page.header.isActive %}active{% endif %}">
     <div class="header hero {{ page.header.hero_classes }} {{ classes }} {{ page.header.hero_scroll ? 'hero-scroll-icon' : '' }}"
          {% if header_image_media %}style="background-image: url({{ header_image_media.url }});"{% endif %}>
-        <div class="container">
+        <div class="container shadow">
             {% if content %}
                 {{ content|raw }}
             {% else %}
