@@ -1,0 +1,29 @@
+{% extends 'partials/base.html.twig' %}
+{% import _self as macro %}
+
+{% set show_onpage_menu = header.onpage_menu == true or header.onpage_menu is null %}
+{% macro pageLinkName(text) %}{{ text|lower|replace({' ':'_'}) }}{% endmacro %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block bottom %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_classes %}{{ parent() }} {% endblock %}
+
+{% block header_navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="project-list faq-list container-fluid">
+        <div class="row">
+            {% for child in page.children %}
+                    {% include 'partials/faq_item.html.twig' with {'parent': page, 'page': child} %}
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
