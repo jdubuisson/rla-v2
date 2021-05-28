@@ -1,10 +1,12 @@
 {% set navbar_style = theme_var('navbar_style') %}
 {% set navbar_bgcolor = theme_var('navbar_bgcolor') %}
 
-<nav class="navbar navbar-expand-md {{ navbar_style }} flex-column" style="background-color:{{ navbar_bgcolor }};"
+<nav class="navbar sticky-top navbar-expand-md {{ navbar_style }} flex-column"
+     style="background-color:{{ navbar_bgcolor }};"
      role="navigation">
     <a href="{{ base_url == '' ? '/' : base_url }}" class="h-50 text-center">
-        <img class="h-100" src="{{ media_directory('image://')['logo-vertical.jpg'].url }}" alt="{{ site.title|e('html') }}"/>
+        <img class="h-100" src="{{ media_directory('image://')['logo-vertical.png'].url }}"
+             alt="{{ site.title|e('html') }}"/>
     </a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -44,8 +46,25 @@
 
             {% if config.plugins.login.enabled and grav.user.username %}
                 <li class="nav-item"><span class="nav-link"><i
-                                class="fa fa-lock"></i> {% include 'partials/login-status.html.twig' %}</span></li>
+                            class="fa fa-lock"></i> {% include 'partials/login-status.html.twig' %}</span></li>
             {% endif %}
         </ul>
     </div>
+
 </nav>
+
+<footer class="nav-bottom fixed-bottom d-none d-sm-block">
+    <a href="http://www.renovation.archi/" class="h-50 text-center" target="_blank">
+        <img class="h-100 pb-3" src="{{ media_directory('image://')['logo-archi-reno.png'].url }}"
+             alt="Les architectes de la rénovation"/>
+    </a>
+    <a href="https://www.faire.gouv.fr/" class="h-50 text-center" target="_blank">
+        <img class="h-100 pb-3" src="{{ media_directory('image://')['logo-faire.png'].url }}" alt="Engagé pour faire"/>
+    </a>
+    <a href="https://www.architectes.org/" class="h-50 text-center" target="_blank">
+        <img class="h-100 pb-3" src="{{ media_directory('image://')['logo-oa.jpg'].url }}" alt="Ordre des architectes"/>
+    </a>
+    <a href="https://www.fedac.fr/" class="h-50 text-center" target="_blank">
+        <img class="h-100 pb-3" src="{{ media_directory('image://')['logo-fedac.jpg'].url }}" alt="la FEDAC"/>
+    </a>
+</footer>

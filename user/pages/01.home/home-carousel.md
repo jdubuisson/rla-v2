@@ -1,6 +1,6 @@
 ---
 title: One Page Demo Site
-menu: Home
+menu: Accueil
 body_classes: "modular header-image fullwidth"
 
 content:
