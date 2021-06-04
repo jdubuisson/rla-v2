@@ -154,3 +154,11 @@ body {
 .m-h-100 {
     min-height: 100%;
 }
+
+.other-projects {
+    position: fixed !important;
+    bottom: 2rem;
+    z-index: 1030;
+    padding-left: 1rem;
+    padding-right: 3rem;
+}

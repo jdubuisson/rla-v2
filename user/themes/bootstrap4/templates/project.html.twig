@@ -49,21 +49,32 @@
                 </div>
             </div>
             <div class="col-md-12 col-lg-6 col-xl-4 offset-xl-1 pt-3">
+                <div class="row">
+                    <div>
                 {{ page.content|raw }}
-                <div class="d-none d-sm-block">
-                    <h4>Autres réalisations</h4>
-                    <div class="row other-projects">
-                        {% set siblings = page.collection({ items: '@self.siblings'}) %}
-                        {% for sibling in siblings|slice(0, 3) %}
+                    </div>
+                </div>
+                <div class="row d-md-none d-lg-block other-projects">
+                    <div class="row  text-center align-items-center justify-content-center">
+                    <h2>Autres réalisations</h2>
+                    </div>
+                    <div class="row">
+                        {% set sibling = page %}
+                        {% for i in 0..2 %}
+                            {% if sibling.isLast %}
+                                {% set sibling = page.collection({ items: '@self.siblings'}).first %}
+                            {% else %}
+                                {% set sibling = sibling.adjacentSibling(-1) %}
+                            {% endif %}
                             <div class="col-4">
                                 {% set sibling_image = sibling.header.header_image|defined(true) %}
                                 {% set sibling_image_file = sibling.header.header_image_file %}
                                 <a href="{{ sibling.url }}">
                                     {% if sibling_image %}
                                         {% if sibling_image_file %}
-                                            {% set sibling_image_media = page.media.images[sibling_image_file] %}
+                                            {% set sibling_image_media = sibling.media.images[sibling_image_file] %}
                                         {% else %}
-                                            {% set sibling_image_media = page.media.images|first %}
+                                            {% set sibling_image_media = sibling.media.images|first %}
                                         {% endif %}
                                         {{ sibling_image_media.resize(240, 180, 'rgb(229, 231, 231)').html(sibling.title, sibling.title)|raw }}
                                     {% endif %}
