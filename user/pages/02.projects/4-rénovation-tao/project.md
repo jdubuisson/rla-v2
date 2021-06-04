@@ -1,5 +1,5 @@
 ---
-title: 'Rénovation maison de ville'
+title: 'Rénovation et aménagement de combles'
 ---
 
 # **Rénovation d'une maison de ville**
@@ -7,7 +7,11 @@ title: 'Rénovation maison de ville'
 
 ##### Rénovation et aménagement des combles d’une maison de ville 
 ##### pour ouvrir la maison sur le jardin.
-##### - Modification structure
-##### - Création plancher bois
+##### - Modification structure et charpente
+##### - Remplacement plancher bois intermédiaire
+##### - Remplacement des menuiseries extérieures
 ##### - Isolation bio-sourcée
 ##### - **Rénovation globale et energétique**
+#####
+#####
+#####
