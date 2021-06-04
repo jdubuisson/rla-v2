@@ -27,7 +27,6 @@ body {
 }
 
 .section {
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -150,4 +149,8 @@ body {
     background-color: white;
     color: #007f85;
     overflow: hidden;
+}
+
+.m-h-100 {
+    min-height: 100%;
 }
