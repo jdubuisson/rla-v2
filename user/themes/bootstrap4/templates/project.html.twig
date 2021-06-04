@@ -27,7 +27,7 @@
                     <div class="carousel-inner">
                         {% for image in page.media.images %}
                             <div class="carousel-item {% if loop.index0 == 0 %}active{% endif %}">
-                                {{ image.cropZoom(1200, 900).html(page.title, page.title)|raw }}
+                                {{ image.resize(1200, 900, 'rgb(229, 231, 231)').html(page.title, page.title)|raw }}
                             </div>
                         {% endfor %}
                     </div>
@@ -42,7 +42,7 @@
                     <ol class="carousel-indicators d-none d-sm-flex">
                         {% for image in page.media.images %}
                             <li data-target="#carouselIndicators" data-slide-to="{{ loop.index0 }}">
-                                {{ image.cropZoom(120, 90).html(page.title, page.title)|raw }}
+                                {{ image.resize(120, 90, 'rgb(229, 231, 231)').html(page.title, page.title)|raw }}
                             </li>
                         {% endfor %}
                     </ol>
@@ -65,7 +65,7 @@
                                         {% else %}
                                             {% set sibling_image_media = page.media.images|first %}
                                         {% endif %}
-                                        {{ sibling_image_media.cropZoom(240, 180).html(sibling.title, sibling.title)|raw }}
+                                        {{ sibling_image_media.resize(240, 180, 'rgb(229, 231, 231)').html(sibling.title, sibling.title)|raw }}
                                     {% endif %}
                                     <span>{{ sibling.title|truncate(50) }}</span>
                                 </a>
