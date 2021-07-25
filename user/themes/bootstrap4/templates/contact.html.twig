@@ -36,18 +36,24 @@
                     <img src="{{ media_directory('image://')['map.jpg'].url }}"
                          alt="{{ site.title|e('html') }}"/>
                 </div>
-                <div class="row d-flex justify-content-center p-5">
-                    <a class="pl-5 pr-5" href="https://www.facebook.com/roselynelaurentarchitecte/"
-                       target="_blank"
-                       style="width: 10rem">
-                        <img src="{{ media_directory('image://')['facebook.png'].url }}"
-                             alt="Facebook"/>
-                    </a>
-                    <a class="pl-5 pr-5" href="https://www.linkedin.com/in/roselyne-laurent/" target="_blank"
-                       style="width: 10rem">
-                        <img src="{{ media_directory('image://')['linkedin.png'].url }}"
-                             alt="LinkedIn"/>
-                    </a>
+                <div class="row p-5">
+                    <div class="col-md-6 text-center pb-5">
+                        {{ page.header.address }}<br />
+                        <i class="fa fa-fw fa-phone" aria-hidden="true"></i> {{ page.header.phone }}
+                    </div>
+                    <div class="col-md-6 d-flex justify-content-center pb-5">
+                        <a class="pl-5 pr-5" href="https://www.facebook.com/roselynelaurentarchitecte/"
+                           target="_blank"
+                           style="width: 10rem">
+                            <img src="{{ media_directory('image://')['facebook.png'].url }}"
+                                 alt="Facebook"/>
+                        </a>
+                        <a class="pl-5 pr-5" href="https://www.linkedin.com/in/roselyne-laurent/" target="_blank"
+                           style="width: 10rem">
+                            <img src="{{ media_directory('image://')['linkedin.png'].url }}"
+                                 alt="LinkedIn"/>
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
