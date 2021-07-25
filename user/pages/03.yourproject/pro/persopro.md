@@ -1,5 +1,6 @@
 ---
 title: 'Votre projet (Professionnels)'
+titleBlockContent: 'Équipement, ERP, bureaux'
 textBlocks:
     -
         block: "## Vous êtes un professionnel ?\r\n\r\nVous souhaitez construire ou agrandir vos locaux ? \r\nVous voulez réorganiser et rénover votre lieu de travail ? \r\nVous accueillez du public et souhaitez mettre aux normes votre bâtiment ?\r\n\r\nQue vos locaux accueillent des bureaux, du public ou une activité industrielle, votre architecte vous propose** des espaces de travail fonctionnels et agréables**. \r\n\r\nIl conçoit et réalise vos locaux en mêlant l’utile à l’esthétique contemporaine.\r\n\r\nPour valoriser votre image de marque, vous assurer de la tenue de votre budget et du planning, consultez les différentes offres de service proposées par l’agence d’architecture Roselyne Laurent.\r\n"
