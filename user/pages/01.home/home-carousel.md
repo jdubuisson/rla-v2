@@ -1,5 +1,5 @@
 ---
-title: One Page Demo Site
+title: Roselyne Laurent Architecte
 menu: Accueil
 body_classes: "modular header-image fullwidth"
 
