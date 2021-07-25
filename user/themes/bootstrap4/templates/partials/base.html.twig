@@ -8,7 +8,7 @@
         {% include 'partials/metadata.html.twig' %}
 
         <title>{% if header.title %}{{ header.title|e('html') }} | {% endif %}{{ site.title|e('html') }}</title>
-        <link rel="icon" type="image/png" href="{{ url('theme://images/favicon.png', true) }}"/>
+        <link rel="icon" type="image/png" href="{{ media_directory('image://')['favicon.png'].url }}"/>
 
         {% block stylesheets %}
             {% do assets.add('theme://css/font-awesome.min.css', 99) %}
