@@ -1,0 +1,55 @@
+{% extends 'partials/base.html.twig' %}
+{% import _self as macro %}
+
+{% set show_onpage_menu = header.onpage_menu == true or header.onpage_menu is null %}
+{% macro pageLinkName(text) %}{{ text|lower|replace({' ':'_'}) }}{% endmacro %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block bottom %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_classes %}{{ parent() }} {% endblock %}
+
+{% block header_navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="project-list container-fluid">
+        <div class="row" style="height:100vh">
+            <div class="col-md-12 col-lg-6">
+                <div id="fullpage">
+                    <div class="section p-3">
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfaB-CdaDDLyY3AE-dU3To3nFwXSpXbIYIEv6bYoovaqI2-Fw/viewform?embedded=true"
+                            width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Chargement…
+                        </iframe>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <div class="row d-flex justify-content-center pt-5 pl-5 pr-5">
+                    <img src="{{ media_directory('image://')['map.jpg'].url }}"
+                         alt="{{ site.title|e('html') }}"/>
+                </div>
+                <div class="row d-flex justify-content-center p-5">
+                    <a class="pl-5 pr-5" href="https://www.facebook.com/roselynelaurentarchitecte/"
+                       target="_blank"
+                       style="width: 10rem">
+                        <img src="{{ media_directory('image://')['facebook.png'].url }}"
+                             alt="Facebook"/>
+                    </a>
+                    <a class="pl-5 pr-5" href="https://www.linkedin.com/in/roselyne-laurent/" target="_blank"
+                       style="width: 10rem">
+                        <img src="{{ media_directory('image://')['linkedin.png'].url }}"
+                             alt="LinkedIn"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

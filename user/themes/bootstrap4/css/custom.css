@@ -166,3 +166,15 @@ body {
 .project-description {
     font-size: 1.2rem;
 }
+
+a.contact {
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: white;
+    color: #007f85;
+}
+
+a.contact:hover {
+    background-color: #007f85;
+    color: white;
+}
