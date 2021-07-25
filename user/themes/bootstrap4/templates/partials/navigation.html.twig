@@ -1,11 +1,13 @@
 {% set navbar_style = theme_var('navbar_style') %}
 {% set navbar_bgcolor = theme_var('navbar_bgcolor') %}
 
-<nav class="navbar sticky-top navbar-expand-md {{ navbar_style }} flex-column"
+<nav class="navbar sticky-top navbar-expand-md {{ navbar_style }}"
      style="background-color:{{ navbar_bgcolor }};"
      role="navigation">
     <a href="{{ base_url == '' ? '/' : base_url }}" class="h-50 text-center">
-        <img class="h-100" src="{{ media_directory('image://')['logo-vertical.png'].url }}"
+        <img class="h-100 logo-v" src="{{ media_directory('image://')['logo-vertical.png'].url }}"
+             alt="{{ site.title|e('html') }}"/>
+        <img class="h-100 logo-h" src="{{ media_directory('image://')['logo-horizontal.png'].url }}"
              alt="{{ site.title|e('html') }}"/>
     </a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target=".navbar-collapse"
