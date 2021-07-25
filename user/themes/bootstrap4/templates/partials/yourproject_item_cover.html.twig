@@ -2,7 +2,7 @@
 {% set header_image_file = page.header.header_image_file %}
 <div class="col-md-12 col-lg-6">
     {% if sibling is not defined %}
-    <a style="text-decoration: none;" href="{{ page.url }}">
+    <a style="text-decoration: none;" href="{{ page.url }}" class="your-project-cover">
         {% endif %}
         <div
             class="header hero {{ classes }}"
@@ -17,7 +17,8 @@
             {% endif %}
                 ">
             <div class="container shadow p-2 m-4">
-                <h2>{{ page.title }}</h2>
+                <h2><b>{{ page.title }}</b></h2>
+                <p>{{ page.header.titleBlockContent }}</p>
                 {% if sibling is defined %}
                     <a class="note" href="{{ sibling.url }}">{{ sibling.header.siblingButtonLabel }}</a>
                 {% endif %}

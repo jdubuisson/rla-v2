@@ -166,3 +166,32 @@ body {
 .project-description {
     font-size: 1.2rem;
 }
+
+a.contact {
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: white;
+    color: #007f85;
+}
+
+a.contact:hover {
+    background-color: #007f85;
+    color: white;
+}
+
+.your-project-cover:hover .header.hero {
+    opacity: 75%;
+}
+
+.your-project-cover:hover .header.hero .container {
+    color: rgba(0, 0, 0, .9);
+}
+
+.arrow-down {
+    transform: rotate(90deg);
+    width: 3rem;
+    height: 3rem;
+    fill: #007f85;
+    display: block;
+    margin: 5rem auto auto;
+}

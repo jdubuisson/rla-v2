@@ -27,13 +27,21 @@
             <div class="col-md-12 col-lg-6">
                 <div id="fullpage">
                     {% for textBlock in page.header.textBlocks %}
-                        <div class="section p-3">{{ textBlock.block | markdown }}</div>
+                        <div class="section p-5">{{ textBlock.block | markdown }}
+                            <svg class="arrow-down" viewBox="0 0 8 8">
+                                <path d="M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z"></path>
+                            </svg>
+                        </div>
                     {% endfor %}
                     <div class="section p-3">
-                        <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfaB-CdaDDLyY3AE-dU3To3nFwXSpXbIYIEv6bYoovaqI2-Fw/viewform?embedded=true" width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Chargement…</iframe>
+                        <iframe
+                            src="https://docs.google.com/forms/d/e/1FAIpQLSfaB-CdaDDLyY3AE-dU3To3nFwXSpXbIYIEv6bYoovaqI2-Fw/viewform?embedded=true"
+                            width="100%" height="100%" frameborder="0" marginheight="0" marginwidth="0">Chargement…
+                        </iframe>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 {% endblock %}
+
