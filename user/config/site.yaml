@@ -1,16 +1,8 @@
-title: Grav
+title: Roselyne Laurent Architecte
 author:
-  name: Joe Bloggs
-  email: 'joe@test.com'
-blog:
-  route: ''
+  name: Roselyne Laurent
+  email: 'contact@roselyne-laurent.archi'
 metadata:
-    description: 'Grav is an easy to use, yet powerful, open source flat-file CMS'
+    description: 'Roselyne Laurent Architecte'
 
-taxonomies: [category,tag,month]
-redirects:
-    /changelog: /blog/the-urban-jungle
-routes:
-    /something/else: /blog/focus-and-blur
-    /another/one/(.*): /blog/$1
 

@@ -1,19 +1,43 @@
-.fill-height {
-    display: flex;
-    flex-direction: column;
+@media (min-width: 576px) {
+    nav.navbar {
+        flex-direction: column !important;
+    }
+    .fill-height {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .fill-height > div {
+        /* these are the flex items */
+        flex: 1;
+    }
+
+    .carousel-item.fill-height {
+        display: none;
+    }
+
+    .carousel-item.fill-height.active {
+        display: flex;
+    }
+
+    .logo-h {
+        display: none
+    }
 }
 
-.fill-height > div {
-    /* these are the flex items */
-    flex: 1;
-}
+@media (max-width: 576px) {
+    nav.navbar {
+        flex-direction: row !important;
+        align-items: center;
+        justify-content: space-around;
+    }
+    nav.navbar > a {
+        width: 10rem;
+    }
 
-.carousel-item.fill-height {
-    display: none;
-}
-
-.carousel-item.fill-height.active {
-    display: flex;
+    .logo-v {
+        display: none
+    }
 }
 
 body {
@@ -27,7 +51,6 @@ body {
 }
 
 .section {
-    height: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -135,7 +158,7 @@ body {
 }
 
 .faq-list .item {
-    height: 30em;
+    height: 40em;
 }
 
 .faq-list .item .question {
@@ -150,4 +173,49 @@ body {
     background-color: white;
     color: #007f85;
     overflow: hidden;
+}
+
+.m-h-100 {
+    min-height: 100%;
+}
+
+.other-projects {
+    position: fixed !important;
+    bottom: 2rem;
+    z-index: 1030;
+    padding-left: 1rem;
+    padding-right: 3rem;
+}
+
+.project-description {
+    font-size: 1.2rem;
+}
+
+a.contact {
+    border-radius: 5px;
+    text-decoration: none;
+    background-color: white;
+    color: #007f85;
+}
+
+a.contact:hover {
+    background-color: #007f85;
+    color: white;
+}
+
+.your-project-cover:hover .header.hero {
+    opacity: 75%;
+}
+
+.your-project-cover:hover .header.hero .container {
+    color: rgba(0, 0, 0, .9);
+}
+
+.arrow-down {
+    transform: rotate(90deg);
+    width: 3rem;
+    height: 3rem;
+    fill: #007f85;
+    display: block;
+    margin: 5rem auto auto;
 }
