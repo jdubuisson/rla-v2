@@ -1,7 +1,16 @@
+.header {
+    background-color: gray;
+}
+
+.carousel-control-next, .carousel-control-prev {
+    width: 5%;
+}
+
 @media (min-width: 576px) {
     nav.navbar {
         flex-direction: column !important;
     }
+
     .fill-height {
         display: flex;
         flex-direction: column;
@@ -31,6 +40,7 @@
         align-items: center;
         justify-content: space-around;
     }
+
     nav.navbar > a {
         width: 10rem;
     }
@@ -42,6 +52,7 @@
 
 body {
     margin-bottom: 0;
+    background-color: #f5f7f7;
 }
 
 @media (min-width: 576px) {
@@ -131,6 +142,7 @@ body {
 .container.shadow {
     background-color: rgba(255, 255, 255, 0.7);
     color: rgba(0, 0, 0, .7);
+    border-radius: 5px;
 }
 
 .container.shadow h1 {
@@ -161,18 +173,34 @@ body {
     height: 40em;
 }
 
-.faq-list .item .question {
-    height: 33%;
+.faq-list .item .question, .agence .item .question {
     color: white;
     background-color: #007f85;
     overflow: hidden;
 }
 
+.faq-list .item .question {
+    height: 33%;
+}
+
 .faq-list .item .answer {
-    height: 66%;
     background-color: white;
     color: #007f85;
     overflow: hidden;
+}
+
+.agence .item {
+    color: #212529;
+    overflow: hidden;
+}
+
+.agence .item h2 {
+    color: #007f85;
+
+}
+
+.faq-list .item .answer {
+    height: 66%;
 }
 
 .m-h-100 {
@@ -218,4 +246,23 @@ a.contact:hover {
     fill: #007f85;
     display: block;
     margin: 5rem auto auto;
+}
+
+.fp-tableCell {
+    color: #212529;
+}
+
+.fp-tableCell h2 {
+    color: #007f85;
+}
+
+.agence-header {
+    justify-content: space-around;
+    align-items: center;
+    background-color: #007f85;
+    color: white;
+}
+
+.agence-header img {
+    border-radius: 5px;
 }

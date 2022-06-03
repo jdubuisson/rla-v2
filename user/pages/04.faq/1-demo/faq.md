@@ -1,5 +1,5 @@
 ---
-title: 'A quoi ca sert un architecte ?'
+title: 'A quoi sert un architecte ?'
 ---
 
 Choisir de travailler avec un architecte, c'est :

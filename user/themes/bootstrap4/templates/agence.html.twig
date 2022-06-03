@@ -1,0 +1,50 @@
+{% extends 'partials/base.html.twig' %}
+{% import _self as macro %}
+
+{% set show_onpage_menu = header.onpage_menu == true or header.onpage_menu is null %}
+{% macro pageLinkName(text) %}{{ text|lower|replace({' ':'_'}) }}{% endmacro %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+
+{% block bottom %}
+    {{ parent() }}
+{% endblock %}
+
+{% block body_classes %}{{ parent() }} {% endblock %}
+
+{% block header_navigation %}
+    {{ parent() }}
+{% endblock %}
+
+{% block content %}
+    <div class="project-list agence container-fluid">
+        <div class="row agence-header p-3 mt-3 d-flex">
+            <div class="col-xl-2 col-4 d-md-block d-none">
+                <img src="{{ media_directory('image://')['portrait.jpg'].url }}"
+                     alt="{{ site.title|e('html') }}"/>
+            </div>
+
+            <div class="col-xl-10 col-md-8 col-12">
+                {% for child in taxonomy.findTaxonomy({'tag':'portrait'}) %}
+                    <div class="p-3 h5" style="line-height: 1.75rem;">
+                        {{ child.content }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                {% for child in taxonomy.findTaxonomy({'tag':'history'}) %}
+                    {% include 'partials/simple_item.html.twig' with {'parent': page, 'page': child} %}
+                {% endfor %}
+            </div>
+            <div class="col-md-6">
+                {% for child in taxonomy.findTaxonomy({'tag':'zoom'}) %}
+                    {% include 'partials/simple_item.html.twig' with {'parent': page, 'page': child} %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

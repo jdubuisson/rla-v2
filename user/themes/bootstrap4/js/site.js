@@ -15,4 +15,8 @@ jQuery(document).ready(function($){
         responsiveWidth: 992
     });
 
+    $('.arrow-down').click(function(){
+        fullpage_api.moveSectionDown();
+    });
+
 });
